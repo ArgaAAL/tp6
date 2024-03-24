@@ -4,8 +4,26 @@ class Program
 {
     static void Main()
     {
-        SayaTubeVideo video = new SayaTubeVideo("Tutorial Design By Contract - Arga Adolf Lumunon");
-        video.IncreasePlayCount(69); 
-        video.PrintVideoDetails();
+        SayaTubeVideo video = null;
+
+        try
+        {
+            video = new SayaTubeVideo("Tutorial Design By Contract - Arga Adolf Lumunon");
+            for (int i = 0; i < 10000000; i++)
+            {
+                video.IncreasePlayCount(1);
+            }
+        }
+        catch (Exception tes)
+        {
+            Console.WriteLine("Error: " + tes.Message);
+        }
+        finally
+        {
+            if (video != null)
+            {
+                video.PrintVideoDetails();
+            }
+        }
     }
 }
